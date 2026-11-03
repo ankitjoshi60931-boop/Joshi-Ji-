@@ -1,0 +1,6 @@
+{
+  "name": "Joshi Ji Reels",
+  "description": "Joshi Ji Reels - Premier bilingual Hindi and English short video platform with OTP login, AI moderation, creator monetization, and owner master admin controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

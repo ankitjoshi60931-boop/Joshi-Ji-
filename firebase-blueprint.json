@@ -1,0 +1,154 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile for Joshi Ji Reels",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "phone": { "type": "string" },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "username": { "type": "string", "maxLength": 50, "pattern": "^[a-zA-Z0-9_]+$" },
+        "bio": { "type": "string", "maxLength": 500 },
+        "photoURL": { "type": "string" },
+        "isVerified": { "type": "boolean" },
+        "role": { "type": "string", "enum": ["owner", "admin", "creator", "user"] },
+        "followersCount": { "type": "number" },
+        "followingCount": { "type": "number" },
+        "reelsCount": { "type": "number" },
+        "viewsCount": { "type": "number" },
+        "monetizationEnabled": { "type": "boolean" },
+        "violationsCount": { "type": "number" },
+        "banStatus": { "type": "string", "enum": ["clean", "warning1", "ban7days", "banned"] },
+        "banExpiresAt": { "type": "string" },
+        "totalEarnings": { "type": "number" },
+        "todayEarnings": { "type": "number" },
+        "pendingBalance": { "type": "number" },
+        "upiId": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "phone", "username", "role", "banStatus"]
+    },
+    "Reel": {
+      "title": "Reel",
+      "description": "Short vertical video reel item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "authorVerified": { "type": "boolean" },
+        "videoUrl": { "type": "string" },
+        "thumbnailUrl": { "type": "string" },
+        "caption": { "type": "string", "maxLength": 500 },
+        "hashtags": { "type": "array" },
+        "location": { "type": "string", "maxLength": 100 },
+        "musicTitle": { "type": "string", "maxLength": 100 },
+        "musicArtist": { "type": "string", "maxLength": 100 },
+        "collaborators": { "type": "array" },
+        "likesCount": { "type": "number" },
+        "viewsCount": { "type": "number" },
+        "commentsCount": { "type": "number" },
+        "sharesCount": { "type": "number" },
+        "status": { "type": "string", "enum": ["approved", "pending", "rejected"] },
+        "isOriginal": { "type": "boolean" },
+        "copyrightPassed": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "authorId", "authorUsername", "videoUrl", "caption", "status"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "User comment on a reel",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "reelId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "text": { "type": "string", "maxLength": 300 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "reelId", "authorId", "authorUsername", "text", "createdAt"]
+    },
+    "Gift": {
+      "title": "Gift",
+      "description": "Gift sent from user to creator",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "reelId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "creatorId": { "type": "string" },
+        "giftType": { "type": "string", "enum": ["heart", "flower", "mithai", "crown"] },
+        "amount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "reelId", "senderId", "creatorId", "giftType", "amount", "createdAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Message in 1-to-1 or group chat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "chatId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderPhoto": { "type": "string" },
+        "type": { "type": "string", "enum": ["text", "image", "video", "voice", "call"] },
+        "content": { "type": "string", "maxLength": 1000 },
+        "mediaUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "chatId", "senderId", "type", "createdAt"]
+    },
+    "AppSettings": {
+      "title": "AppSettings",
+      "description": "Master owner settings for Joshi Ji Reels",
+      "type": "object",
+      "properties": {
+        "appName": { "type": "string" },
+        "logoText": { "type": "string" },
+        "primaryColor": { "type": "string" },
+        "secondaryColor": { "type": "string" },
+        "rulesHindi": { "type": "string" },
+        "rulesEnglish": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["appName", "primaryColor"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Registered user profile"
+    },
+    "/reels/{reelId}": {
+      "schema": { "$ref": "#/entities/Reel" },
+      "description": "Public video reel document"
+    },
+    "/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/Comment" },
+      "description": "Reel comment"
+    },
+    "/gifts/{giftId}": {
+      "schema": { "$ref": "#/entities/Gift" },
+      "description": "Gift transactions"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Chat messages"
+    },
+    "/app_settings/{settingId}": {
+      "schema": { "$ref": "#/entities/AppSettings" },
+      "description": "Master settings for owner"
+    }
+  }
+}
