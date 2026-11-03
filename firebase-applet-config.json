@@ -1,12 +1,9 @@
 {
-  "projectId": "big-server-3bcxw",
-  "appId": "1:52746358240:web:b3d11c74c883d7583e6f85",
-  "apiKey": "AIzaSyBZ_ChTTwnP2Y7ydLpDIgSZICKb5gj17EI",
-  "authDomain": "big-server-3bcxw.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-joshijireels-ba215d16-cda1-4c46-9019-a38b7f1ecca8",
-  "storageBucket": "big-server-3bcxw.firebasestorage.app",
-  "messagingSenderId": "52746358240",
-  "measurementId": "",
-  "oAuthClientId": "52746358240-g9pd89aognj3f6pp19kh3rb1kbi64tis.apps.googleusercontent.com",
-  "recaptchaSiteKey": ""
+  "apiKey": "AIzaSyAfQm41-XYAsTphSsdLCfIdP6hu1axG_pI",
+  "authDomain": "joshi-ji-reels.firebaseapp.com",
+  "projectId": "joshi-ji-reels",
+  "storageBucket": "joshi-ji-reels.firebasestorage.app",
+  "messagingSenderId": "524968333696",
+  "appId": "1:524968333696:web:5f13fd87d01c04f86eb165",
+  "measurementId": "G-MTR77N6CZR"
 }
